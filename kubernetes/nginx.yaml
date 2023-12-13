@@ -50,5 +50,6 @@ spec:
       containers:
       - name: nginx-container
         image: drpeace/flask-nginx
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
