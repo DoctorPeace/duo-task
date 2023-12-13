@@ -75,9 +75,9 @@ pipeline {
                 script {
                     if (env.GIT_BRANCH == 'origin/master') {
                         sh '''
+                        kubectl apply -f .
                         kubectl rollout restart deployment flask-deployment
                         kubectl rollout restart deployment nginx-deployment
-                        kubectl apply -f .
                         echo "Main:Build successful"
                         '''
                     } else if (env.GIT_BRANCH == 'origin/dev') {
