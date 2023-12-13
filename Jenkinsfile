@@ -104,7 +104,7 @@ pipeline {
                         docker rmi drpeace/duo-deploy-flask:v${BUILD_NUMBER}
                         docker rmi drpeace/flask-nginx:v${BUILD_NUMBER}
                         '''
-                    } else if (env.GIT_BRANCH == 'origin/dev') {
+                    } else {
                         echo "Cleanup - Unrecognised branch"
                     }
                 } 
