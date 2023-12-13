@@ -30,9 +30,9 @@ spec:
     metadata:
       labels:
         app: nginx
-      spec:
-        containers:
-        - name: flask-container
-        image: drpeace/flask-nginx
-        ports:
-        - containerPort: 80
+    spec:
+      containers:
+      - name: flask-container
+      image: drpeace/flask-nginx
+      ports:
+      - containerPort: 80

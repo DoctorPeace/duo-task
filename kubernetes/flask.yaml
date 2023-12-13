@@ -30,12 +30,12 @@ spec:
     metadata:
       labels:
         app: flask
-      spec:
-        containers:
-        - name: flask-container
-        image: drpeace/duo-deploy-flask
-        ports:
-        - containerPort: 5500
-        env:
-        - name: YOUR_NAME
-          value: Chris
+    spec:
+      containers:
+      - name: flask-container
+      image: drpeace/duo-deploy-flask
+      ports:
+      - containerPort: 5500
+      env:
+      - name: YOUR_NAME
+        value: Chris
