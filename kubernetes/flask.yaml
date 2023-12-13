@@ -1,14 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-service
+spec:
+  type: ClusterIP
+  selector:
+    app: flask
+  ports:
+  - protocol: TCP
+    port: 5500
+    targetPort: 5500
+---
 apiVersion: apps/v1
-kind: Deploymnet
+kind: Deployment
 metadata:
   name: flask-deployment
   labels:
     app: flask
 spec:
-  replicas: 10
+  replicas: 6
   selector:
-    matchlabels:
-    app: flask
+    matchLabels:
+      app: flask
   strategy:
     rollingUpdate:
       maxSurge: 20%
@@ -25,17 +38,4 @@ spec:
         - containerPort: 5500
         env:
         - name: YOUR_NAME
-        value: Chris
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: flask-app
-spec:
-  type: ClusterIP
-  selector:
-    app: flask
-  ports:
-  - protocol: TCP
-    port: 5500
-    targetPort: 5500
+          value: Chris
