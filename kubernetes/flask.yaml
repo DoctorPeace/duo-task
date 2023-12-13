@@ -34,6 +34,7 @@ spec:
       containers:
       - name: flask-container
         image: drpeace/duo-deploy-flask
+        imagePullPolicy: Always
         ports:
         - containerPort: 5500
         env:
