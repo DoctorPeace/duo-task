@@ -32,7 +32,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: flask-container
+      - name: nginx-container
         image: drpeace/flask-nginx
         ports:
         - containerPort: 80
