@@ -18,11 +18,11 @@ metadata:
 data:
   nginx.conf: |
     events {}
-      http {
-        server {
-          listen 80;
-          location / {
-            proxy_pass http://flask-service:5500;
+    http {
+      server {
+        listen 80;
+        location / {
+          proxy_pass http://flask-service:5500;
         }
       }
     }
