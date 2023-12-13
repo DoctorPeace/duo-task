@@ -33,6 +33,6 @@ spec:
     spec:
       containers:
       - name: flask-container
-      image: drpeace/flask-nginx
-      ports:
-      - containerPort: 80
+        image: drpeace/flask-nginx
+        ports:
+        - containerPort: 80

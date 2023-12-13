@@ -33,9 +33,9 @@ spec:
     spec:
       containers:
       - name: flask-container
-      image: drpeace/duo-deploy-flask
-      ports:
-      - containerPort: 5500
+        image: drpeace/duo-deploy-flask
+        ports:
+        - containerPort: 5500
       env:
       - name: YOUR_NAME
         value: Chris
