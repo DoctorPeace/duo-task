@@ -49,7 +49,7 @@ spec:
     spec:
       containers:
       - name: nginx-container
-        image: drpeace/flask-nginx
+        image: drpeace/flask-nginx:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
