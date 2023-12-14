@@ -7,6 +7,8 @@ pipeline {
 			        if (env.GIT_BRANCH == 'origin/master') {
                         sh '''
                         echo "Build not required in master"
+                        kubectl create namespace production
+                        kubectl create namespace deployment
                         '''
                     } else if (env.GIT_BRANCH == 'origin/dev') {
                         sh '''
@@ -47,8 +49,6 @@ pipeline {
                 script {
                     if (env.GIT_BRANCH == 'origin/master') {
                         sh '''
-                        kubectl create namespace production
-                        kubectl create namespace deployment
                         kubectl apply -f ./kubernetes --namespace production
                         kubectl apply -f ./kubernetes --namespace deployment
                         kubectl rollout restart deployment flask-deployment
