@@ -48,7 +48,7 @@ pipeline {
                     if (env.GIT_BRANCH == 'origin/master') {
                         sh '''
                         kubectl apply -f ./kubernetes --namespace production
-                        kubectl apply -f ./kubernetes --namespace deployment
+                        kubectl apply -f ./kubernetes --namespace development
                         kubectl rollout restart deployment flask-deployment
                         kubectl rollout restart deployment nginx-deployment
                         echo "Main:Build successful"
