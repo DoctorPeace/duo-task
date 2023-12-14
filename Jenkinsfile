@@ -72,13 +72,13 @@ pipeline {
                     if (env.GIT_BRANCH == 'origin/master') {
                         sh '''
                         kubectl apply -f ./kubernetes --namespace production
-                        kubectl set image deployment/flask-deployment drpeace/duo-deploy-flask:prod-v${BUILD_NUMBER} -n production
+                        kubectl set image deployment/flask-deployment flask-container=drpeace/duo-deploy-flask:prod-v${BUILD_NUMBER} -n production
                         echo "main:Deploy successful"
                         '''
                     } else if (env.GIT_BRANCH == 'origin/dev') {
                         sh '''
                         kubectl apply -f ./kubernetes --namespace development
-                        kubectl set image deployment/flask-deployment drpeace/duo-deploy-flask:dev-v${BUILD_NUMBER} -n development
+                        kubectl set image deployment/flask-deployment flask-container=drpeace/duo-deploy-flask:dev-v${BUILD_NUMBER} -n development
                         echo "dev:Deploy successful"
                         '''
                     } else {
