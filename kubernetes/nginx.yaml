@@ -55,6 +55,6 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
-      volumeMounts:
-      - name: nginx-volume
-        mountPath: /etc/nginx/
+        volumeMounts:
+        - name: nginx-volume
+          mountPath: /etc/nginx/
