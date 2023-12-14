@@ -48,14 +48,14 @@ pipeline {
                     if (env.GIT_BRANCH == 'origin/master') {
                         sh '''
                         kubectl apply -f ./kubernetes --namespace production
-                        kubectl apply -f ./kubernetes --namespace development
-                        kubectl rollout restart deployment flask-deployment
-                        kubectl rollout restart deployment nginx-deployment
+                        kubectl rollout restart deployment flask-deployment --namespace production
+                        kubectl rollout restart deployment nginx-deployment --namespace production
                         echo "Main:Build successful"
                         '''
                     } else if (env.GIT_BRANCH == 'origin/dev') {
                         sh '''
-                        kubectl apply -f .
+                        kubectl apply -f . --namespace development
+                        kubectl apply -f ./kubernetes --namespace development
                         echo "Dev:Build successful"
                         '''
                     } else {
