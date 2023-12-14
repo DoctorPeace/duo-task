@@ -50,7 +50,7 @@ spec:
       volumes:
       - name: nginx-volume
         configMap:
-          name: nginx-config
+          name: nginx-config  # referencing the contents of the ConfigMap
       containers:
       - name: nginx-container
         image: drpeace/flask-nginx:latest
@@ -58,5 +58,5 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-        - name: nginx-volume
-          mountPath: /etc/nginx/
+        - name: nginx-volume  # referencing the volume name
+          mountPath: /etc/nginx/  # specifying the mount location

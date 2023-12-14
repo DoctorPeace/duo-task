@@ -11,7 +11,7 @@ pipeline {
                     } else if (env.GIT_BRANCH == 'origin/dev') {
                         sh '''
                         docker build -t drpeace/duo-deploy-flask -t drpeace/duo-deploy-flask:v${BUILD_NUMBER} .
-                        echo "Build successful"
+                        echo "dev:Build successful"
                         '''
                     } else {
                         sh '''
@@ -26,13 +26,13 @@ pipeline {
                 script {
 			        if (env.GIT_BRANCH == 'origin/master') {
                         sh '''
-                        echo "Push not required in master"
+                        echo "Push not required in main"
                         '''
                     } else if (env.GIT_BRANCH == 'origin/dev') {
                         sh '''
                         docker push drpeace/duo-deploy-flask
                         docker push drpeace/duo-deploy-flask:v${BUILD_NUMBER}
-                        echo "Push successful"
+                        echo "dev:Deploy successful"
                         '''
                     } else {
                         sh '''
@@ -50,13 +50,13 @@ pipeline {
                         kubectl apply -f ./kubernetes --namespace production
                         kubectl rollout restart deployment flask-deployment --namespace production
                         kubectl rollout restart deployment nginx-deployment --namespace production
-                        echo "Main:Build successful"
+                        echo "main:Deploy successful"
                         '''
                     } else if (env.GIT_BRANCH == 'origin/dev') {
                         sh '''
                         kubectl apply -f . --namespace development
                         kubectl apply -f ./kubernetes --namespace development
-                        echo "Dev:Build successful"
+                        echo "dev:Deploy successful"
                         '''
                     } else {
                         echo "Deploy - Unrecognised branch"
@@ -69,11 +69,12 @@ pipeline {
                 script {
                     if (env.GIT_BRANCH == 'origin/master') {
                         sh '''
-                        echo "rmi not required in master"
+                        echo "main:Cleanup successful"
                         '''
                     } else if (env.GIT_BRANCH == 'origin/dev') {
                         sh '''
                         docker system prune -f
+                        echo "dev:Cleanup successful"
                         '''
                     } else {
                         echo "Cleanup - Unrecognised branch"
