@@ -47,9 +47,14 @@ spec:
       labels:
         app: nginx
     spec:
+      volumes:
+      - name: nginx-config
       containers:
       - name: nginx-container
         image: drpeace/flask-nginx:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
+      volumeMounts:
+      - name: nginx-volume
+        mountPath: /etc/nginx/
