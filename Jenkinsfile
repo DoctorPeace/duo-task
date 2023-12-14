@@ -7,8 +7,6 @@ pipeline {
 			        if (env.GIT_BRANCH == 'origin/master') {
                         sh '''
                         echo "Build not required in master"
-                        kubectl create namespace production
-                        kubectl create namespace deployment
                         '''
                     } else if (env.GIT_BRANCH == 'origin/dev') {
                         sh '''
